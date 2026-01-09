@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "parcel index.js",
-    "build": "parcel build index.js"
+    "build":"npx parcel build index.js", // add the comma
+    "lint": "npx standard --fix" // add this line
 },
   "repository": {
     "type": "git",
