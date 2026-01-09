@@ -1,7 +1,7 @@
 {
   "name": "@evadaruma/Sandbox-ci",
   "version": "0.1.2",
-  "description": "a package that tells you the week number",
+  "description": "a package that tells you the week number ° last Update test",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
