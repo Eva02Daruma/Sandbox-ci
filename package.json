@@ -1,6 +1,6 @@
 {
-  "name": "@evadaruma/Sandbox-ci",
-  "version": "0.1.2",
+  "name": "@evadaruma/sandbox-ci",
+  "version": "0.1.3",
   "description": "a package that tells you the week number ° last Update test",
   "main": "dist/index.js",
   "scripts": {
