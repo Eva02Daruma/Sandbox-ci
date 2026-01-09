@@ -4,30 +4,33 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Mark workspace as safe for Git
-      run: git config --global --add safe.directory /github/workspace
-        
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
-    
+      - uses: actions/checkout@v4 # Actualizado a v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4 # Actualizado a v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
+
   lint:
-      name: Node Code Formatter
-      runs-on: ubuntu-latest
-      steps:
+    name: Node Code Formatter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Este paso es vital aquí porque el formateador usa Docker
+      - name: Mark workspace as safe for Git
+        run: git config --global --add safe.directory /github/workspace
+
       - name: Node Code Formatter
         uses: MarvinJWendt/run-node-formatter@1.2.1
         env:
