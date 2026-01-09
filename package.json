@@ -1,7 +1,7 @@
 {
-  "name": "@japanese/reactor",
+  "name": "@evadaruma/Sandbox-ci",
   "version": "0.1.1",
-  "description": "a sandbox that somehow turns into anki cards for Japanese learning",
+  "description": "a package that tells you the week number",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
@@ -15,9 +15,9 @@
   "author": "eva02daruma",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bdougie/theWeekNum/issues"
+    "url": "https://github.com/eva02daruma/Sandbox-ci/issues"
   },
-  "homepage": "https://github.com/bdougie/theWeekNum#readme",
+  "homepage": "https://github.com/eva02daruma/Sandbox-ci#readme",
   "devDependencies": {
     "jest": "^24.8.0"
   },
