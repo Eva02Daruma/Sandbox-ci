@@ -3,7 +3,6 @@ name: Node.js Package
 on:
   release:
     types: [created]
-  # ESTO AGREGA EL BOTÓN PARA CORRERLO MANUALMENTE:
   workflow_dispatch:
 
 jobs:
@@ -22,13 +21,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
+          # IMPORTANTE: Esto asocia tu usuario npm con el registro público
+          scope: '@evadaruma' 
+
       - run: npm ci
       
-      # Publicar
-      - run: npm publish --access public
+      # Paso opcional para verificar si el secreto está llegando (NO imprime el token)
+      - name: Check Auth
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "ERROR: NODE_AUTH_TOKEN está vacío.";
+            exit 1;
+          else
+            echo "OK: NODE_AUTH_TOKEN detectado (longitud: ${#NODE_AUTH_TOKEN}).";
+          fi
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+
+      - name: Publish to NPM
+        run: npm publish --access public
+        env:
+          # Setup-node usa esta variable para crear el archivo .npmrc
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
