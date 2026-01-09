@@ -1,7 +1,7 @@
 {
   "name": "@japanese/reactor",
   "version": "0.1.1",
-  "description": "a sandbox that somehow turns into anki cards for japanese learning",
+  "description": "a sandbox that somehow turns into anki cards for Japanese learning",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/bdougie/theWeekNum.git"
   },
-  "author": "bdougie",
+  "author": "eva02daruma",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bdougie/theWeekNum/issues"
