@@ -1,14 +1,15 @@
 name: Node CI
-
-on: [push]
+on:
+  push:
+    branches: ["*"] # Corre en todas las ramas para Build/Lint
 
 jobs:
   build:
+    name: Build and Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Cambia 12.x por 20.x
-        node-version: [20.x] 
+        node-version: [20.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -17,7 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm' # Esto acelera tus builds futuros
+          cache: 'npm'
       
       - run: npm ci
       - run: npm run build --if-present
@@ -29,11 +30,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Cambiamos el dueño a 'root' que es quien suele ejecutar Docker
+      # Vital para evitar el error de "dubious ownership" en la acción de MarvinJWendt
       - name: Fix workspace ownership
         run: sudo chown -R root:root $GITHUB_WORKSPACE
 
       - name: Node Code Formatter
         uses: MarvinJWendt/run-node-formatter@1.2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  update_draft_release:
+    name: Release Management
+    # Solo se ejecuta si el push fue a la rama 'main'
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: toolmantim/release-drafter@v5.2.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
