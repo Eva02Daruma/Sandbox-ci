@@ -7,15 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        # Cambia 12.x por 20.x
+        node-version: [20.x] 
 
     steps:
-      - uses: actions/checkout@v4 # Actualizado a v4
-
+      - uses: actions/checkout@v4
+      
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4 # Actualizado a v4
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm' # Esto acelera tus builds futuros
       
       - run: npm ci
       - run: npm run build --if-present
@@ -27,9 +29,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Este paso es vital aquí porque el formateador usa Docker
-      - name: Mark workspace as safe for Git
-        run: git config --global --add safe.directory /github/workspace
+      # Cambiamos el dueño a 'root' que es quien suele ejecutar Docker
+      - name: Fix workspace ownership
+        run: sudo chown -R root:root $GITHUB_WORKSPACE
 
       - name: Node Code Formatter
         uses: MarvinJWendt/run-node-formatter@1.2.1
