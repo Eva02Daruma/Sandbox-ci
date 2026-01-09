@@ -1,7 +1,7 @@
 {
-  "name": "@bdougie/theweeknum",
-  "version": "0.1.0",
-  "description": "a package that tells you the week number",
+  "name": "@japanese/reactor",
+  "version": "0.1.1",
+  "description": "a sandbox that somehow turns into anki cards for japanese learning",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
