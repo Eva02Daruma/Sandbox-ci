@@ -4,11 +4,10 @@
   "description": "a package that tells you the week number",
   "main": "index.js",
   "scripts": {
-  "test": "jest", // add the comma
-  "start": "parcel index.js", // add this line
-  "build": "parcel build index.js" // add this line
+    "test": "jest",
+    "build":"npx parcel build index.js", // add the comma
+    "lint": "npx standard --fix" // add this line
 },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bdougie/theWeekNum.git"
