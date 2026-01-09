@@ -1,6 +1,6 @@
 {
   "name": "@evadaruma/Sandbox-ci",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "a package that tells you the week number",
   "main": "dist/index.js",
   "scripts": {
